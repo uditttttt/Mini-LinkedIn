@@ -46,7 +46,8 @@ function App() {
         <div className="bg-gray-100 min-h-screen">
             <Navbar isAuthenticated={isAuthenticated} handleLogout={handleLogout} user={user} />
             <main>
-                <div className="max-w-4xl mx-auto py-6 sm:px-6 lg:px-8">
+                {/* This line is updated to add 'px-4' for better mobile padding */}
+                <div className="max-w-4xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                     <Routes>
                         <Route path="/" element={<Home isAuthenticated={isAuthenticated} user={user} />} />
                         <Route path="/register" element={<Register />} />
