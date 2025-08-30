@@ -82,15 +82,13 @@ const express = require('express');
 const connectDB = require('./config/db');
 const cors = require('cors');
 
-// This loads your .env file variables for local development.
 require('dotenv').config();
-
 const app = express();
-
-// Connect to the database.
 connectDB();
 
-// --- NEW ROBUST CORS Configuration ---
+console.log('--- SERVER INITIALIZING ---'); // <-- Debug Log
+
+// --- CORS Configuration with Debugging ---
 const allowedOrigins = [
   'http://localhost:3000',
   'http://localhost:5173',
@@ -99,21 +97,22 @@ const allowedOrigins = [
 
 const corsOptions = {
   origin: function (origin, callback) {
-    // The 'origin' is the URL of the site making the request (e.g., your frontend)
-    
-    // If the origin is in our allowed list (for localhost) OR if it's a request from our Render frontend...
+    // 'origin' is the URL of the site making the request (e.g., your frontend)
+    console.log('--- CORS CHECK ---'); // <-- Debug Log
+    console.log('Request Origin:', origin); // <-- Debug Log: This is the most important line
+
     if (!origin || allowedOrigins.indexOf(origin) !== -1 || origin.endsWith('.onrender.com')) {
-      // ...then allow the request.
+      console.log('CORS check PASSED'); // <-- Debug Log
       callback(null, true);
     } else {
-      // ...otherwise, block it.
+      console.log('CORS check FAILED'); // <-- Debug Log
       callback(new Error('Not allowed by CORS'));
     }
   }
 };
 
 app.use(cors(corsOptions));
-// --- END OF NEW CODE ---
+// --- END OF CORS ---
 
 app.use(express.json({ extended: false }));
 
@@ -123,7 +122,7 @@ app.use('/api/auth', require('./routes/auth'));
 app.use('/api/posts', require('./routes/posts'));
 app.use('/api/users', require('./routes/users'));
 
-// --- Server Start Logic (for Render/local) ---
+// --- Server Start Logic ---
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 
