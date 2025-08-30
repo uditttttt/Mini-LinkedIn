@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://mini-linkedin-backend-jer6.onrender.com/api', // Your backend API URL
+  // baseURL: 'https://mini-linkedin-backend-jer6.onrender.com/api', // Your backend API URL
+    baseURL: 'https://mini-linked-in-eta.vercel.app/api', // Your backend API URL
   headers: {
     'Content-Type': 'application/json',
   },
