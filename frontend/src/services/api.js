@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'https://mini-linked-in-git-main-udits-projects-6e1b8ef0.vercel.app/api', // Uses local URL if availableL
+  baseURL: import.meta.env.VITE_API_URL || 'https://mini-linked-xmascfrb3-udits-projects-6e1b8ef0.vercel.app/api', // Uses local URL if availableL
   headers: {
     'Content-Type': 'application/json',
   },
